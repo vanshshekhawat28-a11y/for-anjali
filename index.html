@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine Anjali 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background: radial-gradient(circle at top,#0f0c29,#302b63,#24243e);
+color:white;
+overflow:hidden;
+}
+
+/* Sections */
+section{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+transition:0.8s;
+opacity:0;
+transform:translateX(100%);
+}
+
+.active{
+opacity:1;
+transform:translateX(0);
+}
+
+.card{
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(15px);
+padding:50px;
+border-radius:25px;
+box-shadow:0 0 40px rgba(255,0,200,0.4);
+max-width:700px;
+border:1px solid rgba(255,255,255,0.15);
+}
+
+h1{
+font-size:2.8rem;
+margin-bottom:20px;
+text-shadow:0 0 15px #ff00ff;
+}
+
+p{
+margin:10px 0;
+font-size:1.2rem;
+color:#e0e0e0;
+}
+
+input{
+padding:10px;
+border-radius:20px;
+border:none;
+outline:none;
+text-align:center;
+margin-top:15px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00f5ff,#ff00c8);
+color:white;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+.hidden{display:none;}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<section id="page1" class="active">
+<div class="card">
+<h1>Happy Valentine’s Day 💜</h1>
+<p>Before entering… enter the password 😉</p>
+<input type="password" id="pass" placeholder="Enter password">
+<br>
+<button onclick="checkPass()">Unlock 🔓</button>
+<p id="wrong" class="hidden">Wrong password 😅</p>
+</div>
+</section>
+
+<!-- PAGE 2 -->
+<section id="page2">
+<div class="card">
+<h1>Some Funny Questions 😆</h1>
+<p>1. Am I your favorite notification? 📱</p>
+<p>2. Do you smile when you see my name? 😌</p>
+<p>3. If I disappear for 1 day, will you miss me? 👀</p>
+<button onclick="nextPage(3)">Let’s Play Truth or Dare 🎭</button>
+</div>
+</section>
+
+<!-- PAGE 3 -->
+<section id="page3">
+<div class="card">
+<h1>Truth or Dare? 😈</h1>
+<button id="truthBtn" onmouseover="moveTruth()">Truth 🤭</button>
+<button onclick="showDare()">Dare 😏</button>
+
+<div id="dareBox" class="hidden">
+<p>1️⃣ Send me your farewell pic 📸</p>
+<p>2️⃣ Send a voice note saying my name 😌</p>
+<p>3️⃣ Tell me one thing you like about me 💬</p>
+<p>4️⃣ You have to reply instantly whenever I text you today 😉</p>
+<button onclick="nextPage(4)">Next ➡</button>
+</div>
+</div>
+</section>
+
+<!-- PAGE 4 -->
+<section id="page4">
+<div class="card">
+<h1>One More Thing 💜</h1>
+<p>I made this just to see you smile 😊</p>
+<p>You matter more than you think.</p>
+<p>Your presence makes my days better ✨</p>
+<p>And honestly… I really like talking to you 💕</p>
+<button onclick="nextPage(5)">Final Message 💌</button>
+</div>
+</section>
+
+<!-- PAGE 5 -->
+<section id="page5">
+<div class="card">
+<h1>That’s It 😌</h1>
+<p>Now you can also give me any dare 😉</p>
+</div>
+</section>
+
+<script>
+function nextPage(num){
+document.querySelectorAll("section").forEach(sec=>{
+sec.classList.remove("active");
+});
+document.getElementById("page"+num).classList.add("active");
+}
+
+function checkPass(){
+let value=document.getElementById("pass").value;
+if(value==="smile"){
+nextPage(2);
+}else{
+document.getElementById("wrong").classList.remove("hidden");
+}
+}
+
+function moveTruth(){
+let btn=document.getElementById("truthBtn");
+btn.style.position="absolute";
+btn.style.left=Math.random()*60+"%";
+btn.style.top=Math.random()*60+"%";
+}
+
+function showDare(){
+document.getElementById("dareBox").classList.remove("hidden");
+}
+
+/* Stars */
+for(let i=0;i<100;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.top=Math.random()*100+"vh";
+star.style.left=Math.random()*100+"vw";
+star.style.animationDuration=(Math.random()*2+1)+"s";
+document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
